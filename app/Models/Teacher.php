@@ -2,31 +2,26 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Teacher extends Model
 {
-    protected $fillable = [
-        'name',
-        'email',
-        'phone',
-        'class',
-        'dob',
-        'gender'
+     protected $fillable = [
+        'name', 'email', 'phone', 'qualification', 'specialization',
+        'experience_years', 'joining_date', 'gender', 'address'
     ];
 
-    // One-to-One: Teacher has one profile 
-    public function profile(): HasOne
-    {
-        return $this->hasOne(TeacherProfile::class);
-    }
+    // One-to-Many: A teacher has many courses
+    // public function courses(): HasMany
+    // {
+    //     return $this->hasMany(Course::class);
+    // }
 
-    // Many-to-Many: Teacher belongs to many courses (will use later) 
-    public function courses(): BelongsToMany
+    // Accessor: Get teacher's full info
+    public function getFullInfoAttribute()
     {
-        return $this->belongsToMany(Course::class, 'course_Teacher');
+        return $this->name . ' (' . $this->qualification . ')';
     }
+    
 }

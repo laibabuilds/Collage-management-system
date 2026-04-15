@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('teachers', function (Blueprint $table) {
@@ -16,16 +13,16 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
-            $table->string('class')->nullable();
-            $table->date('dob')->nullable();
+            $table->string('qualification')->nullable();  // e.g., MSc, BEd
+            $table->string('specialization')->nullable(); // e.g., Mathematics, Physics
+            $table->integer('experience_years')->default(0);
+            $table->date('joining_date')->nullable();
             $table->enum('gender', ['male', 'female', 'other'])->nullable();
+            $table->text('address')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('teachers');

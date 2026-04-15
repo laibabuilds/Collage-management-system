@@ -20,13 +20,23 @@ Route::put('/students/{student}', [StudentController::class, 'update'])->name('s
 Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('students.destroy'); 
 
 
-Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index'); 
-Route::get('/teachers/create', [TeacherController::class, 'create'])->name('teachers.create'); 
-Route::post('/teachers', [TeacherController::class, 'store'])->name('teachers.store'); 
-Route::get('/teachers/{teacher}', [TeacherController::class, 'show'])->name('teachers.show'); 
-Route::get('/teachers/{teacher}/edit', [TeacherController::class, 'edit'])->name('teachers.edit'); 
-Route::put('/teachers/{teacher}', [TeacherController::class, 'update'])->name('teachers.update'); 
+// Teacher CRUD Routes
+//Route::resource('teachers', TeacherController::class);
+Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
+
+// 2. Show form to create new teacher (CREATE FORM)
+Route::get('/teachers/create', [TeacherController::class, 'create'])->name('teachers.create');
+// 3. Save new teacher to database (STORE DATA)
+Route::post('/teachers', [TeacherController::class, 'store'])->name('teachers.store');
+// 4. Display single teacher details (SHOW PAGE)
+Route::get('/teachers/{teacher}', [TeacherController::class, 'show'])->name('teachers.show');
+// 5. Show form to edit teacher (EDIT FORM)
+Route::get('/teachers/{teacher}/edit', [TeacherController::class, 'edit'])->name('teachers.edit');
+// 6. Update teacher in database (UPDATE DATA)
+Route::put('/teachers/{teacher}', [TeacherController::class, 'update'])->name('teachers.update');
+// 7. Delete teacher from database (DELETE DATA)
 Route::delete('/teachers/{teacher}', [TeacherController::class, 'destroy'])->name('teachers.destroy');
+
 
 // Home route (your existing) 
 Route::get('/', function () {
