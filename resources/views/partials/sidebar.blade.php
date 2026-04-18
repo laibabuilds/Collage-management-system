@@ -1,7 +1,5 @@
 <div class="sidebar">
-
-    <a href="/students">👨‍🎓 Students</a>
-    <a href="/teachers">👩‍🏫 Teachers</a>
-    <a href="#">📚 Courses</a>
-
+    <a href="{{ route('students.index') }}">Students</a>
+    <a href="{{ route('teachers.index') }}">Teachers</a>
+    <a href="{{ route('courses.index') }}">Courses</a>
 </div>
